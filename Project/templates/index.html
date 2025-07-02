@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home made Pickles and Snacks</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <div class="white-container">
+  <h2>Welcome to Home made Pickles & Snacks</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/mangopickle.jpg') }}" alt="Veg Pickles">
+      <h3><a href="{{ url_for('veg_pickles') }}">Veg Pickles</a></h3>
+      <p>Tangy homemade veg pickles.</p>
+    </div>
+
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/chicken_pickle.jpg') }}" alt="Non-Veg Pickles">
+      <h3><a href="{{ url_for('non_veg_pickles') }}">Non-Veg Pickles</a></h3>
+      <p>Rich and spicy delights just for you.</p>
+    </div>
+
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/chips.jpg') }}" alt="Snacks">
+      <h3><a href="{{ url_for('snacks') }}">Snacks</a></h3>
+      <p>Crispy bites made with love.</p>
+    </div>
+  </div>
+  </div>
+
+  <footer class="site-footer">
+    © 2025 Home Made Pickles and Snacks – Taste the Best! | Crafted with Tradition, Served with Love ❤️
+  </footer>
+</body>
+</html>
+
+

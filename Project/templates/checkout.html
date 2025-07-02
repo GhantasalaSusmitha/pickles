@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <div class="white-container">
+    <h2>Checkout</h2>
+    <form action="/success" method="POST" class="auth-form">
+      <input type="text" name="name" placeholder="Full Name" required><br>
+      <input type="text" name="address" placeholder="Shipping Address" required><br>
+      <select name="payment" required>
+        <option value="">Select Payment Method</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="upi">UPI</option>
+      </select><br>
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+</body>
+</html>
+

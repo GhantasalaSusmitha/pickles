@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snacks</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <div class="white-container">
+    <h2>Crunchy & Crispy Snacks</h2>
+
+    <div class="product-list">
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/chips.jpg') }}" alt="Chips">
+        <p>Chips - ₹60</p>
+        <button onclick="addToCartAndRedirect('Chips', 60)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/murukku.jpg') }}" alt="Murukku">
+        <p>Murukku - ₹50</p>
+        <button onclick="addToCartAndRedirect('Murukku', 50)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/dalmudi.jpg') }}" alt="Dal Mudi">
+        <p>Dal Mudi - ₹200</p>
+        <button onclick="addToCartAndRedirect('Dal Mudi', 200)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/masalapapad.jpg') }}" alt="Masala Papad">
+        <p>Masala Papad - ₹70</p>
+        <button onclick="addToCartAndRedirect('Masala Papad', 70)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/rosecookies.jpg') }}" alt="Rose Cookies">
+        <p>Rose Cookies - ₹50</p>
+        <button onclick="addToCartAndRedirect('Rose Cookies', 50)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+    </div>
+  </div>
+
+    <script>
+    function addToCartAndRedirect(itemName, price) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+      if (cart[itemName]) {
+        cart[itemName].quantity += 1;
+      } else {
+        cart[itemName] = { quantity: 1, price: price };
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = "/cart";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Veg Pickles</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <div class="white-container">
+    <h2>Fresh & Zesty Veg Pickles</h2>
+
+    <div class="product-list">
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/mangopickle.jpg') }}" alt="Mango Pickle">
+        <p>Mango Pickle - ₹100</p>
+        <button onclick="addToCartAndRedirect('Mango Pickle', 100)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/lemonpickle.jpg') }}" alt="Lemon Pickle">
+        <p>Lemon Pickle - ₹80</p>
+        <button onclick="addToCartAndRedirect('Lemon Pickle', 80)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/gongurapickle.jpg') }}" alt="Gongura Pickle">
+        <p>Gongura Pickle - ₹80</p>
+        <button onclick="addToCartAndRedirect('Gongura Pickle', 80)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/redchillipickle.jpg') }}" alt="Redchilli Pickle">
+        <p>Redchilli Pickle - ₹80</p>
+        <button onclick="addToCartAndRedirect('Redchilli Pickle', 80)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/tomatopickle.jpg') }}" alt="Tomato Pickle">
+        <p>Tomato Pickle - ₹80</p>
+        <button onclick="addToCartAndRedirect('Tomato Pickle', 80)">Add to Cart</button>
+        <a href="/checkout"><button class="checkout-small">Proceed to Order</button></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function addToCartAndRedirect(itemName, price) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+      if (cart[itemName]) {
+        cart[itemName].quantity += 1;
+      } else {
+        cart[itemName] = { quantity: 1, price: price };
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = "/cart";
+    }
+  </script>
+</body>
+</html>
