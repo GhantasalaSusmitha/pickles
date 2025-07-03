@@ -123,9 +123,21 @@ def about():
 @app.route('/contact_us', methods=['GET', 'POST'])
 def contact_us():
     if request.method == 'POST':
-        # Save contact form message
-        return redirect(url_for('success'))
+        name = request.form['name']
+        email = request.form['email']
+        message_content = request.form['message']
+
+        # Combine the message
+        body = f"Name: {name}\nEmail: {email}\nMessage:\n{message_content}"
+
+        # Send email to yourself
+        send_email(EMAIL_ADDRESS, 'New Contact Us Message', body)
+
+        flash('Your message has been sent! Thank you for contacting us.', 'success')
+        return redirect(url_for('contact_us'))
+
     return render_template('contact_us.html')
+
 
 # Email Sending Function
 def send_email(to_email, subject, body):
