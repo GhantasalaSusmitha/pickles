@@ -6,15 +6,26 @@
 </head>
 <body>
   {% include 'navbar.html' %}
+
   <div class="white-container">
     <h2>Contact Us</h2>
-    <form class="center-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="4" required></textarea>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form class="center-form" action="/contact_us" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
       <button type="submit">Send Message</button>
     </form>
   </div>
 </body>
 </html>
+
 
